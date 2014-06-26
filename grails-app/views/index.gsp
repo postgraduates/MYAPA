@@ -2,98 +2,50 @@
 <html>
 	<head>
 		<meta name="layout" content="main"/>
-		<title>Загрузочная страница</title>
+		<title>Login</title>
 		<style type="text/css" media="screen">
 			#status {
-				background-color: #eee;
-				border: .2em solid #fff;
-				margin: 2em 2em 1em;
-				padding: 1em;
-				width: 12em;
+			label{
+			    width: 65px;
 				float: left;
-				-moz-box-shadow: 0px 0px 1.25em #ccc;
-				-webkit-box-shadow: 0px 0px 1.25em #ccc;
-				box-shadow: 0px 0px 1.25em #ccc;
-				-moz-border-radius: 0.6em;
-				-webkit-border-radius: 0.6em;
-				border-radius: 0.6em;
+			
 			}
-
-			.ie6 #status {
-				display: inline; /* float double margin fix http://www.positioniseverything.net/explorer/doubled-margin.html */
-			}
-
-			#status ul {
-				font-size: 0.9em;
-				list-style-type: none;
-				margin-bottom: 0.6em;
-				padding: 0;
-			}
-
-			#status li {
-				line-height: 1.3;
-			}
-
-			#status h1 {
-				text-transform: uppercase;
-				font-size: 1.1em;
-				margin: 0 0 0.3em;
-			}
-
-			#page-body {
-				margin: 2em 1em 1.25em 18em;
-			}
-
-			h2 {
-				margin-top: 1em;
-				margin-bottom: 0.3em;
-				font-size: 1em;
-			}
-
-			p {
-				line-height: 1.5;
-				margin: 0.25em 0;
-			}
-
-			#controller-list ul {
-				list-style-position: inside;
-			}
-
-			#controller-list li {
-				line-height: 1.3;
-				list-style-position: inside;
-				margin: 0.25em 0;
-			}
-
-			@media screen and (max-width: 480px) {
-				#status {
-					display: none;
-				}
-
-				#page-body {
-					margin: 0 1em 1em;
-				}
-
-				#page-body h1 {
-					margin-top: 0;
-				}
-			}
-		</style>
-	</head>
+				
+		 </style>
+		 </head>
 	<body>
-		
-		<div id="page-body" role="main">
-			<h1>Добро пожаловать!</h1>
-			<p>Здесь содержатся установленные контроллеры</p>
-
-			<div id="controller-list" role="navigation">
-				<h2>Список контроллеров:</h2>
-				<ul>
-					<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-						<li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
-					</g:each>
-				</ul>
-			</div>
+	<g:if test ="${flash.message}">
+	<div class ="message">
+		${flash.message}
 		</div>
-	</body>
+		</g:if>
+	<g:if test="${session.user}" style = "padding-left:200px">
+	<br/>
+	    <g:form style = "padding-left:200px">
+        <div style ="width:220px">
+		   <h2>Меню:</h2>
+				<ul>
+					<li class="controller"><a href="/MYAPA/book/index">Список книг</a></li>
+					<li class="controller"><a href="/MYAPA/person/index">Список авторов</a></li>
+				</ul>
+		</div>
+		
+	    <br>
+	Login as : ${session.user} | <g:link controller = "user"  action="logout">Logout</g:link></g:form>
+	
+	</g:if>
+	<g:else>
+	
+	<g:form controller = "user" action="login" style = "padding-left:200px">
+		<div style ="width:220px">
+		  	   <b> Вас приветствует Помощник библиотекаря.</b><br/>
+		    Для дальнейшей работы вам нужно ввести ваши Login и Password.
+		    		    <br/> <br/> 
+		    <label>Login:</label><input type = "text" name="username"/>
+		    <label>Password:</label><input type = "password" name="password"/>
+		    <label>&nbsp;</label><input type = "submit" value="Login"/>
+	    </div>
+	    </g:form>
+	</g:else>
+	    	</body>
 </html>
