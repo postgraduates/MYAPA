@@ -1,0 +1,1 @@
+The application is attempt to create web project using a Grails framework.
