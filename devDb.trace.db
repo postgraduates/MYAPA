@@ -1,0 +1,30 @@
+06-25 21:25:16 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "PERSON_BOOK" не найдена
+Table "PERSON_BOOK" not found; SQL statement:
+insert into person_book (person_books_id, book_id) values (?, ?) [42102-176]
+06-25 21:28:20 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLException: Таблица "PERSON_BOOK" не найдена
+Table "PERSON_BOOK" not found; SQL statement:
+insert into person_book (person_books_id, book_id) values (?, ?) [42102-176]
+06-26 14:14:56 database: close
+org.h2.message.DbException: Ошибка ввода/вывода: "java.io.EOFException"; "C:/Documents and Settings/Владелец/MYAPA/devDb.h2.db"
+IO Exception: "java.io.EOFException"; "C:/Documents and Settings/Владелец/MYAPA/devDb.h2.db" [90031-176]
+	at org.h2.message.DbException.get(DbException.java:167)
+	at org.h2.message.DbException.convertIOException(DbException.java:329)
+	at org.h2.store.FileStore.readFully(FileStore.java:276)
+	at org.h2.store.PageStore.readPage(PageStore.java:1326)
+	at org.h2.store.PageStore.getPage(PageStore.java:750)
+	at org.h2.store.PageStreamTrunk$Iterator.next(PageStreamTrunk.java:252)
+	at org.h2.store.PageLog.free(PageLog.java:214)
+	at org.h2.store.PageStore.compact(PageStore.java:499)
+	at org.h2.engine.Database.closeOpenFilesAndUnlock(Database.java:1301)
+	at org.h2.engine.Database.close(Database.java:1251)
+	at org.h2.engine.DatabaseCloser.run(DatabaseCloser.java:64)
+Caused by: org.h2.jdbc.JdbcSQLException: Ошибка ввода/вывода: "java.io.EOFException"; "C:/Documents and Settings/Владелец/MYAPA/devDb.h2.db"
+IO Exception: "java.io.EOFException"; "C:/Documents and Settings/Владелец/MYAPA/devDb.h2.db" [90031-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	... 11 more
+Caused by: java.io.EOFException
+	at org.h2.store.fs.FileUtils.readFully(FileUtils.java:347)
+	at org.h2.store.FileStore.readFully(FileStore.java:274)
+	... 8 more
